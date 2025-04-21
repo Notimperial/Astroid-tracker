@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroid Data</title>
+</head>
+<body>
+    <h1>Near Earth Asteroids</h1>
+
+    {% if asteroids %}
+        {% for date, asteroid_list in asteroids.items %}
+            <h2>Date: {{ date }}</h2>
+            <ul>
+                {% for asteroid in asteroid_list %}
+                    <li>
+                        <strong>Name:</strong> {{ asteroid.name }}<br>
+                        <strong>Estimated Size (km):</strong> {{ asteroid.size_min|floatformat:2 }} - {{ asteroid.size_max|floatformat:2 }}<br>
+                        <strong>Velocity (km/s):</strong> {{ asteroid.velocity_kmps|floatformat:2 }}<br>
+                        <strong>Miss Distance (km):</strong> {{ asteroid.miss_distance_km|floatformat:2 }}<br>
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p>No asteroid data available.</p>
+    {% endif %}
+</body>
+</html>
